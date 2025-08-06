@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - NuWave Gaming</title>
+    <meta name="description" content="Review your NuWave Gaming cart and proceed to checkout for premium gaming peripherals.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-950 text-slate-100">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-sm">
+        <div class="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <a href="/" class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-cyan-400">
+                    <line x1="6" x2="10" y1="12" y2="12"></line>
+                    <line x1="8" x2="8" y1="10" y2="14"></line>
+                    <line x1="15" x2="15.01" y1="13" y2="13"></line>
+                    <line x1="18" x2="18.01" y1="11" y2="11"></line>
+                    <rect width="20" height="12" x="2" y="6" rx="2"></rect>
+                </svg>
+                <span class="text-xl font-bold tracking-tighter">
+                    NuWave<span class="text-cyan-400">Gaming</span>
+                </span>
+            </a>
+            <nav class="hidden items-center gap-6 md:flex">
+                <a href="/" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">Home</a>
+                <a href="/shop" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">Shop</a>
+                <a href="/blog" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">Blog</a>
+                <a href="/about" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">About</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button class="relative text-slate-300 hover:text-cyan-400 transition-colors" id="cart-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"></circle>
+                        <circle cx="19" cy="21" r="1"></circle>
+                        <path d="m2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                    </svg>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-cyan-500 text-slate-950 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </button>
+                <a href="/auth/signin" class="border border-slate-700 hover:bg-slate-800 hover:text-slate-100 bg-transparent text-slate-300 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign In</a>
+                <a href="/auth/signup" class="bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20 hover:bg-cyan-400 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold tracking-tighter sm:text-5xl mb-4">Shopping Cart</h1>
+            <p class="text-lg text-slate-300">Review your items and proceed to checkout</p>
+        </div>
+
+        <!-- Cart Content -->
+        <div id="cart-page-content" class="max-w-4xl mx-auto">
+            <!-- Empty Cart State -->
+            <div id="empty-cart" class="text-center py-16 hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-6 text-slate-400">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="m2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                <h2 class="text-2xl font-bold text-slate-100 mb-4">Your cart is empty</h2>
+                <p class="text-slate-400 mb-8">Add some awesome gaming gear to get started!</p>
+                <a href="/shop" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 py-3 px-8 rounded-lg font-medium transition-colors inline-block">
+                    Start Shopping
+                </a>
+            </div>
+
+            <!-- Cart Items -->
+            <div id="cart-items" class="hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Items List -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-slate-900 rounded-lg border border-slate-800">
+                            <div class="p-6 border-b border-slate-800">
+                                <h2 class="text-xl font-bold text-slate-100">Cart Items</h2>
+                            </div>
+                            <div id="cart-items-list" class="divide-y divide-slate-800">
+                                <!-- Items will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-slate-900 rounded-lg border border-slate-800 sticky top-24">
+                            <div class="p-6 border-b border-slate-800">
+                                <h2 class="text-xl font-bold text-slate-100">Order Summary</h2>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Subtotal</span>
+                                    <span id="cart-subtotal">$0.00</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Shipping</span>
+                                    <span id="cart-shipping">FREE</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Tax</span>
+                                    <span id="cart-tax">$0.00</span>
+                                </div>
+                                <div class="border-t border-slate-700 pt-4">
+                                    <div class="flex justify-between text-xl font-bold text-slate-100">
+                                        <span>Total</span>
+                                        <span id="cart-total">$0.00</span>
+                                    </div>
+                                </div>
+                                <div class="pt-4 space-y-3">
+                                    <a href="/checkout" id="checkout-page-btn" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 py-4 px-6 rounded-lg font-bold text-center transition-colors block">
+                                        Proceed to Checkout
+                                    </a>
+                                    <a href="/shop" class="w-full bg-slate-700 hover:bg-slate-600 text-slate-100 py-3 px-6 rounded-lg font-medium text-center transition-colors block">
+                                        Continue Shopping
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950">
+        <div class="container mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-cyan-400">
+                            <line x1="6" x2="10" y1="12" y2="12"></line>
+                            <line x1="8" x2="8" y1="10" y2="14"></line>
+                            <line x1="15" x2="15.01" y1="13" y2="13"></line>
+                            <line x1="18" x2="18.01" y1="11" y2="11"></line>
+                            <rect width="20" height="12" x="2" y="6" rx="2"></rect>
+                        </svg>
+                        <span class="text-xl font-bold tracking-tighter">
+                            NuWave<span class="text-cyan-400">Gaming</span>
+                        </span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Elevating your gaming experience with premium peripherals designed for champions.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-100 mb-4">Shop</h3>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="/shop" class="hover:text-cyan-400 transition-colors">All Products</a></li>
+                        <li><a href="/shop" class="hover:text-cyan-400 transition-colors">Headsets</a></li>
+                        <li><a href="/shop" class="hover:text-cyan-400 transition-colors">Keyboards</a></li>
+                        <li><a href="/shop" class="hover:text-cyan-400 transition-colors">Mice</a></li>
+                        <li><a href="/shop" class="hover:text-cyan-400 transition-colors">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-100 mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="/about" class="hover:text-cyan-400 transition-colors">About Us</a></li>
+                        <li><a href="/blog" class="hover:text-cyan-400 transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-100 mb-4">Legal</h3>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="/legal/privacy-policy" class="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service" class="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="/legal/cookies-policy" class="hover:text-cyan-400 transition-colors">Cookies Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-400">
+                <p>&copy; 2024 NuWave Gaming. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-700 p-4 z-50 hidden">
+        <div class="container mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-sm text-slate-300">
+                <p>We use cookies to enhance your browsing experience and analyze our traffic. 
+                <a href="/legal/cookies-policy" class="text-cyan-400 hover:text-cyan-300 underline">Learn more</a></p>
+            </div>
+            <div class="flex gap-3">
+                <button id="accept-cookies" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    Accept All
+                </button>
+                <button id="decline-cookies" class="bg-slate-700 hover:bg-slate-600 text-slate-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    Decline
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/cookies.js"></script>
+    <script src="../js/cart.js"></script>
+    <script>
+        // Cart page specific functionality
+        class CartPage {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.renderCartPage();
+                // Listen for cart updates
+                document.addEventListener('cartUpdated', () => {
+                    this.renderCartPage();
+                });
+            }
+
+            renderCartPage() {
+                const cart = window.cart;
+                if (!cart) return;
+
+                const emptyCart = document.getElementById('empty-cart');
+                const cartItems = document.getElementById('cart-items');
+                const cartItemsList = document.getElementById('cart-items-list');
+
+                if (cart.items.length === 0) {
+                    emptyCart.classList.remove('hidden');
+                    cartItems.classList.add('hidden');
+                    return;
+                }
+
+                emptyCart.classList.add('hidden');
+                cartItems.classList.remove('hidden');
+
+                // Render items
+                cartItemsList.innerHTML = cart.items.map(item => `
+                    <div class="p-6 flex items-center gap-4">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-slate-100 mb-1">${item.name}</h3>
+                            <p class="text-slate-400 text-sm">$${item.price.toFixed(2)} each</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button class="quantity-btn w-10 h-10 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center text-slate-100 transition-colors" data-action="decrease" data-product-id="${item.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14"></path>
+                                </svg>
+                            </button>
+                            <span class="w-12 text-center text-slate-100 font-medium text-lg">${item.quantity}</span>
+                            <button class="quantity-btn w-10 h-10 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center text-slate-100 transition-colors" data-action="increase" data-product-id="${item.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14"></path>
+                                    <path d="M12 5v14"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-slate-100 font-bold text-lg">$${(item.price * item.quantity).toFixed(2)}</p>
+                            <button class="remove-item text-red-400 hover:text-red-300 transition-colors text-sm mt-1" data-product-id="${item.id}">
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Update summary
+                const subtotal = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const shipping = subtotal >= 100 ? 0 : 9.99;
+                const tax = subtotal * 0.08;
+                const total = subtotal + shipping + tax;
+
+                document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('cart-shipping').textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+                document.getElementById('cart-tax').textContent = `$${tax.toFixed(2)}`;
+                document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+            }
+        }
+
+        // Initialize cart page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for cart to be initialized
+            setTimeout(() => {
+                new CartPage();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - NuWave Gaming</title>
+    <meta name="description" content="Complete your NuWave Gaming purchase with secure checkout and multiple payment options.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-950 text-slate-100">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-sm">
+        <div class="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <a href="/" class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-cyan-400">
+                    <line x1="6" x2="10" y1="12" y2="12"></line>
+                    <line x1="8" x2="8" y1="10" y2="14"></line>
+                    <line x1="15" x2="15.01" y1="13" y2="13"></line>
+                    <line x1="18" x2="18.01" y1="11" y2="11"></line>
+                    <rect width="20" height="12" x="2" y="6" rx="2"></rect>
+                </svg>
+                <span class="text-xl font-bold tracking-tighter">
+                    NuWave<span class="text-cyan-400">Gaming</span>
+                </span>
+            </a>
+            <nav class="hidden items-center gap-6 md:flex">
+                <a href="/" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">Home</a>
+                <a href="/shop" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">Shop</a>
+                <a href="/blog" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">Blog</a>
+                <a href="/about" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">About</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button class="relative text-slate-300 hover:text-cyan-400 transition-colors" id="cart-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"></circle>
+                        <circle cx="19" cy="21" r="1"></circle>
+                        <path d="m2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                    </svg>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-cyan-500 text-slate-950 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </button>
+                <a href="/auth/signin" class="border border-slate-700 hover:bg-slate-800 hover:text-slate-100 bg-transparent text-slate-300 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign In</a>
+                <a href="/auth/signup" class="bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20 hover:bg-cyan-400 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-8">
+            <a href="/cart" class="hover:text-cyan-400 transition-colors">Cart</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg>
+            <span class="text-slate-100">Checkout</span>
+        </nav>
+
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold tracking-tighter sm:text-5xl mb-4">Checkout</h1>
+            <p class="text-lg text-slate-300">Complete your order securely</p>
+        </div>
+
+        <!-- Checkout Content -->
+        <div id="checkout-page-content" class="max-w-6xl mx-auto">
+            <!-- Empty Cart Redirect -->
+            <div id="empty-cart-redirect" class="text-center py-16 hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-6 text-slate-400">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="m2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                <h2 class="text-2xl font-bold text-slate-100 mb-4">Your cart is empty</h2>
+                <p class="text-slate-400 mb-8">Add some items to your cart before checking out.</p>
+                <a href="/shop" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 py-3 px-8 rounded-lg font-medium transition-colors inline-block">
+                    Start Shopping
+                </a>
+            </div>
+
+            <!-- Checkout Form -->
+            <div id="checkout-form-container" class="hidden">
+                <form id="checkout-page-form" class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Left Column - Forms -->
+                    <div class="space-y-8">
+                        <!-- Shipping Information -->
+                        <div class="bg-slate-900 rounded-lg border border-slate-800 p-6">
+                            <h2 class="text-xl font-bold text-slate-100 mb-6">Shipping Information</h2>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">First Name *</label>
+                                    <input type="text" name="firstName" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">Last Name *</label>
+                                    <input type="text" name="lastName" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Email Address *</label>
+                                <input type="email" name="email" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400">
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Phone Number</label>
+                                <input type="tel" name="phone" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400">
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Street Address *</label>
+                                <input type="text" name="address" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 mt-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">City *</label>
+                                    <input type="text" name="city" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">ZIP Code *</label>
+                                    <input type="text" name="zipCode" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-sm font-medium text-slate-300 mb-2">State/Province *</label>
+                                <input type="text" name="state" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400">
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Country *</label>
+                                <select name="country" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400">
+                                    <option value="">Select Country</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="FR">France</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="bg-slate-900 rounded-lg border border-slate-800 p-6">
+                            <h2 class="text-xl font-bold text-slate-100 mb-6">Payment Method</h2>
+                            <div class="space-y-4">
+                                <label class="flex items-center p-4 border border-slate-600 rounded-lg cursor-pointer hover:border-slate-500 transition-colors payment-option">
+                                    <input type="radio" name="paymentMethod" value="paypal" class="sr-only" required>
+                                    <div class="w-5 h-5 border-2 border-slate-400 rounded-full mr-4 flex items-center justify-center">
+                                        <div class="w-2.5 h-2.5 bg-cyan-400 rounded-full hidden payment-dot"></div>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-blue-600 text-white px-4 py-2 rounded text-sm font-bold">PayPal</div>
+                                        <div>
+                                            <p class="text-slate-100 font-medium">PayPal</p>
+                                            <p class="text-slate-400 text-sm">Pay securely with your PayPal account</p>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border border-slate-600 rounded-lg cursor-pointer hover:border-slate-500 transition-colors payment-option">
+                                    <input type="radio" name="paymentMethod" value="bank" class="sr-only">
+                                    <div class="w-5 h-5 border-2 border-slate-400 rounded-full mr-4 flex items-center justify-center">
+                                        <div class="w-2.5 h-2.5 bg-cyan-400 rounded-full hidden payment-dot"></div>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-green-600 text-white px-4 py-2 rounded text-sm font-bold">Bank</div>
+                                        <div>
+                                            <p class="text-slate-100 font-medium">Bank Transfer</p>
+                                            <p class="text-slate-400 text-sm">Direct bank transfer (3-5 business days)</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Bank Transfer Details -->
+                            <div id="bank-transfer-details" class="mt-6 p-4 bg-slate-800 rounded-lg hidden">
+                                <h3 class="font-semibold text-slate-100 mb-4">Bank Transfer Details</h3>
+                                <div class="space-y-2 text-sm text-slate-300">
+                                    <p><strong>Bank Name:</strong> NuWave Gaming Bank</p>
+                                    <p><strong>Account Name:</strong> NuWave Gaming Ltd</p>
+                                    <p><strong>Account Number:</strong> 1234567890</p>
+                                    <p><strong>Routing Number:</strong> 987654321</p>
+                                    <p><strong>SWIFT Code:</strong> NWGBANKUS</p>
+                                    <p><strong>Reference:</strong> Please include your order number</p>
+                                </div>
+                                <div class="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                                    <p class="text-yellow-400 text-xs">
+                                        <strong>Important:</strong> Your order will be processed once payment is received (3-5 business days). 
+                                        You will receive an email with complete banking details after placing your order.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Order Summary -->
+                    <div class="lg:sticky lg:top-24 lg:self-start">
+                        <div class="bg-slate-900 rounded-lg border border-slate-800 p-6">
+                            <h2 class="text-xl font-bold text-slate-100 mb-6">Order Summary</h2>
+                            
+                            <!-- Order Items -->
+                            <div id="checkout-items-list" class="space-y-4 mb-6">
+                                <!-- Items will be populated by JavaScript -->
+                            </div>
+
+                            <!-- Order Totals -->
+                            <div class="border-t border-slate-700 pt-6 space-y-3">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Subtotal</span>
+                                    <span id="checkout-subtotal">$0.00</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Shipping</span>
+                                    <span id="checkout-shipping">FREE</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Tax (8%)</span>
+                                    <span id="checkout-tax">$0.00</span>
+                                </div>
+                                <div class="border-t border-slate-700 pt-3">
+                                    <div class="flex justify-between text-xl font-bold text-slate-100">
+                                        <span>Total</span>
+                                        <span id="checkout-total">$0.00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Place Order Button -->
+                            <button type="submit" id="place-order-btn" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 py-4 px-6 rounded-lg font-bold text-lg mt-6 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                                Place Order
+                            </button>
+
+                            <!-- Security Notice -->
+                            <div class="mt-4 flex items-center gap-2 text-xs text-slate-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                                    <path d="m7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                                <span>Your payment information is secure and encrypted</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950">
+        <div class="container mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-cyan-400">
+                            <line x1="6" x2="10" y1="12" y2="12"></line>
+                            <line x1="8" x2="8" y1="10" y2="14"></line>
+                            <line x1="15" x2="15.01" y1="13" y2="13"></line>
+                            <line x1="18" x2="18.01" y1="11" y2="11"></line>
+                            <rect width="20" height="12" x="2" y="6" rx="2"></rect>
+                        </svg>
+                        <span class="text-xl font-bold tracking-tighter">
+                            NuWave<span class="text-cyan-400">Gaming</span>
+                        </span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Elevating your gaming experience with premium peripherals designed for champions.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-100 mb-4">Shop</h3>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="/shop" class="hover:text-cyan-400 transition-colors">All Products</a></li>
+                        <li><a href="/shop" class="hover:text-cyan-400 transition-colors">Headsets</a></li>
+                        <li><a href="/shop" class="hover:text-cyan-400 transition-colors">Keyboards</a></li>
+                        <li><a href="/shop" class="hover:text-cyan-400 transition-colors">Mice</a></li>
+                        <li><a href="/shop" class="hover:text-cyan-400 transition-colors">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-100 mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="/about" class="hover:text-cyan-400 transition-colors">About Us</a></li>
+                        <li><a href="/blog" class="hover:text-cyan-400 transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-100 mb-4">Legal</h3>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="/legal/privacy-policy" class="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service" class="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="/legal/cookies-policy" class="hover:text-cyan-400 transition-colors">Cookies Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-400">
+                <p>&copy; 2024 NuWave Gaming. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-700 p-4 z-50 hidden">
+        <div class="container mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-sm text-slate-300">
+                <p>We use cookies to enhance your browsing experience and analyze our traffic. 
+                <a href="/legal/cookies-policy" class="text-cyan-400 hover:text-cyan-300 underline">Learn more</a></p>
+            </div>
+            <div class="flex gap-3">
+                <button id="accept-cookies" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    Accept All
+                </button>
+                <button id="decline-cookies" class="bg-slate-700 hover:bg-slate-600 text-slate-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    Decline
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/cookies.js"></script>
+    <script src="../js/cart.js"></script>
+    <script>
+        // Checkout page specific functionality
+        class CheckoutPage {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.renderCheckoutPage();
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                // Payment method selection
+                const paymentOptions = document.querySelectorAll('.payment-option');
+                const bankDetails = document.getElementById('bank-transfer-details');
+
+                paymentOptions.forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        const radio = option.querySelector('input[type="radio"]');
+                        radio.checked = true;
+
+                        // Update visual selection
+                        paymentOptions.forEach(opt => {
+                            const dot = opt.querySelector('.payment-dot');
+                            if (opt === option) {
+                                dot.classList.remove('hidden');
+                                opt.classList.add('border-cyan-400', 'bg-slate-800');
+                            } else {
+                                dot.classList.add('hidden');
+                                opt.classList.remove('border-cyan-400', 'bg-slate-800');
+                            }
+                        });
+
+                        // Show/hide bank details
+                        if (radio.value === 'bank') {
+                            bankDetails.classList.remove('hidden');
+                        } else {
+                            bankDetails.classList.add('hidden');
+                        }
+                    });
+                });
+
+                // Form submission
+                const form = document.getElementById('checkout-page-form');
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.processOrder();
+                });
+            }
+
+            renderCheckoutPage() {
+                const cart = window.cart;
+                if (!cart) return;
+
+                const emptyCartRedirect = document.getElementById('empty-cart-redirect');
+                const checkoutFormContainer = document.getElementById('checkout-form-container');
+                const checkoutItemsList = document.getElementById('checkout-items-list');
+
+                if (cart.items.length === 0) {
+                    emptyCartRedirect.classList.remove('hidden');
+                    checkoutFormContainer.classList.add('hidden');
+                    return;
+                }
+
+                emptyCartRedirect.classList.add('hidden');
+                checkoutFormContainer.classList.remove('hidden');
+
+                // Render items
+                checkoutItemsList.innerHTML = cart.items.map(item => `
+                    <div class="flex items-center gap-4 p-4 bg-slate-800 rounded-lg">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg">
+                        <div class="flex-1">
+                            <h3 class="font-medium text-slate-100">${item.name}</h3>
+                            <p class="text-slate-400 text-sm">Qty: ${item.quantity} × $${item.price.toFixed(2)}</p>
+                        </div>
+                        <p class="text-slate-100 font-bold">$${(item.price * item.quantity).toFixed(2)}</p>
+                    </div>
+                `).join('');
+
+                // Update totals
+                const subtotal = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const shipping = subtotal >= 100 ? 0 : 9.99;
+                const tax = subtotal * 0.08;
+                const total = subtotal + shipping + tax;
+
+                document.getElementById('checkout-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('checkout-shipping').textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+                document.getElementById('checkout-tax').textContent = `$${tax.toFixed(2)}`;
+                document.getElementById('checkout-total').textContent = `$${total.toFixed(2)}`;
+            }
+
+            processOrder() {
+                const form = document.getElementById('checkout-page-form');
+                const formData = new FormData(form);
+                const submitButton = document.getElementById('place-order-btn');
+                
+                // Validate required fields
+                const requiredFields = ['firstName', 'lastName', 'email', 'address', 'city', 'zipCode', 'state', 'country', 'paymentMethod'];
+                const missingFields = requiredFields.filter(field => !formData.get(field));
+                
+                if (missingFields.length > 0) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // Show processing state
+                const originalText = submitButton.textContent;
+                submitButton.disabled = true;
+                
+                const paymentMethod = formData.get('paymentMethod');
+                
+                if (paymentMethod === 'paypal') {
+                    submitButton.textContent = 'Redirecting to PayPal...';
+                } else if (paymentMethod === 'bank') {
+                    submitButton.textContent = 'Processing Order...';
+                }
+
+                // Simulate processing time
+                setTimeout(() => {
+                    // Create order data
+                    const cart = window.cart;
+                    const subtotal = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    const shipping = subtotal >= 100 ? 0 : 9.99;
+                    const tax = subtotal * 0.08;
+
+                    const orderData = {
+                        id: Date.now().toString(),
+                        date: new Date().toLocaleDateString(),
+                        items: [...cart.items],
+                        customer: {
+                            firstName: formData.get('firstName'),
+                            lastName: formData.get('lastName'),
+                            email: formData.get('email'),
+                            phone: formData.get('phone'),
+                            address: formData.get('address'),
+                            city: formData.get('city'),
+                            zipCode: formData.get('zipCode'),
+                            state: formData.get('state'),
+                            country: formData.get('country')
+                        },
+                        paymentMethod: paymentMethod,
+                        subtotal: subtotal,
+                        shipping: shipping,
+                        tax: tax,
+                        total: subtotal + shipping + tax,
+                        status: paymentMethod === 'bank' ? 'Pending Payment' : 'Confirmed'
+                    };
+
+                    // Save order
+                    cart.saveOrder(orderData);
+
+                    // Clear cart
+                    cart.items = [];
+                    cart.saveCart();
+                    cart.updateCartUI();
+
+                    // Redirect to success page or show success message
+                    window.location.href = `/order-confirmation?id=${orderData.id}`;
+
+                    // Reset button
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }, 2000);
+            }
+        }
+
+        // Initialize checkout page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for cart to be initialized
+            setTimeout(() => {
+                new CheckoutPage();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

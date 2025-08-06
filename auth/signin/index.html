@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | NuWave Gaming</title>
+    <meta name="description" content="Sign in to your NuWave Gaming account to access exclusive features and track your orders.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'slate': {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-sm">
+        <div class="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <a href="../../" class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-cyan-400">
+                    <line x1="6" x2="10" y1="12" y2="12"></line>
+                    <line x1="8" x2="8" y1="10" y2="14"></line>
+                    <path d="M15 12v5l3 3 3-3v-5"></path>
+                    <path d="M9 7 6.5 9.5a2.5 2.5 0 0 0 0 3.5L9 15"></path>
+                </svg>
+                <span class="text-xl font-bold tracking-tighter">
+                    NuWave<span class="text-cyan-400">Gaming</span>
+                </span>
+            </a>
+            <nav class="hidden items-center gap-6 md:flex">
+                <a href="../../" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">Home</a>
+                <a href="../../shop/" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">Shop</a>
+                <a href="../../blog/" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">Blog</a>
+                <a href="../../about/" class="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400">About</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="../../auth/signin/" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors h-9 px-3 border border-cyan-500 bg-transparent text-cyan-400 hover:bg-cyan-500 hover:text-slate-950">
+                    Sign In
+                </a>
+                <a href="../../auth/signup/" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors h-9 px-3 bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20 hover:bg-cyan-400">
+                    Sign Up
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="min-h-screen flex items-center justify-center py-16">
+        <div class="w-full max-w-md">
+            <div class="bg-slate-900 border border-slate-800 rounded-lg shadow-2xl shadow-cyan-900/20 p-8">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold tracking-tighter">Welcome Back</h1>
+                    <p class="mt-2 text-slate-400">Sign in to your NuWave Gaming account</p>
+                </div>
+
+                <form class="space-y-6" onsubmit="handleSignIn(event)">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-200 mb-2">
+                            Email Address
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required
+                            class="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-md text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                            placeholder="Enter your email"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-slate-200 mb-2">
+                            Password
+                        </label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required
+                            class="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-md text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                            placeholder="Enter your password"
+                        >
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input 
+                                type="checkbox" 
+                                id="remember" 
+                                name="remember"
+                                class="h-4 w-4 text-cyan-500 bg-slate-800 border-slate-700 rounded focus:ring-cyan-500 focus:ring-2"
+                            >
+                            <label for="remember" class="ml-2 text-sm text-slate-300">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="#" class="text-sm text-cyan-400 hover:text-cyan-300">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <button 
+                        type="submit"
+                        class="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors h-11 px-8 bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20 hover:bg-cyan-400"
+                    >
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center">
+                    <p class="text-slate-400">
+                        Don't have an account? 
+                        <a href="../signup/" class="text-cyan-400 hover:text-cyan-300 font-medium">
+                            Sign up here
+                        </a>
+                    </p>
+                </div>
+
+                <div class="mt-8">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-slate-700"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-slate-900 text-slate-400">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors h-10 px-4 border border-slate-700 bg-slate-800 hover:bg-slate-700">
+                            <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
+                            Google
+                        </button>
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors h-10 px-4 border border-slate-700 bg-slate-800 hover:bg-slate-700">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.097.118.112.221.083.343-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                            Discord
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950">
+        <div class="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+                <div class="md:col-span-1">
+                    <a href="../../" class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-cyan-400">
+                            <line x1="6" x2="10" y1="12" y2="12"></line>
+                            <line x1="8" x2="8" y1="10" y2="14"></line>
+                            <path d="M15 12v5l3 3 3-3v-5"></path>
+                            <path d="M9 7 6.5 9.5a2.5 2.5 0 0 0 0 3.5L9 15"></path>
+                        </svg>
+                        <span class="text-xl font-bold tracking-tighter">
+                            NuWave<span class="text-cyan-400">Gaming</span>
+                        </span>
+                    </a>
+                    <p class="mt-4 text-sm text-slate-400">
+                        The future of gaming is here. High-performance gear for the modern gamer.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-8 md:col-span-3 md:grid-cols-3">
+                    <div>
+                        <h3 class="font-semibold text-slate-200">Shop</h3>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="../../shop/" class="text-sm text-slate-400 hover:text-cyan-400">All Products</a></li>
+                            <li><a href="../../shop/hyper-flux-headset/" class="text-sm text-slate-400 hover:text-cyan-400">Headsets</a></li>
+                            <li><a href="../../shop/quantum-strike-keyboard/" class="text-sm text-slate-400 hover:text-cyan-400">Keyboards</a></li>
+                            <li><a href="../../shop/gamma-pro-mouse/" class="text-sm text-slate-400 hover:text-cyan-400">Mice</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-200">Company</h3>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="../../about/" class="text-sm text-slate-400 hover:text-cyan-400">About Us</a></li>
+                            <li><a href="../../blog/" class="text-sm text-slate-400 hover:text-cyan-400">Blog</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-cyan-400">Careers</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-cyan-400">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-200">Legal</h3>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-cyan-400">Privacy Policy</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-cyan-400">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-slate-800 pt-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
+                <p class="text-sm text-slate-500">
+                    &copy; 2025 NuWave Gaming. All rights reserved.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-slate-400 hover:text-cyan-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-cyan-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                            <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-cyan-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3l6.9 6.9c.9.9.9 2.4 0 3.3L2 20l6.9-6.9c.9-.9 2.4-.9 3.3 0L20 22l-6.9-6.9c-.9-.9-.9-2.4 0-3.3L20 2l-6.9 6.9c-.9.9-2.4.9-3.3 0L2 3z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleSignIn(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Simulate sign in process
+            alert('Sign in functionality would be implemented here. For demo purposes, this shows the form is working!');
+            
+            // In a real app, you would send this data to your backend
+            console.log('Sign in attempt:', { email, password });
+        }
+    </script>
+</body>
+</html>
